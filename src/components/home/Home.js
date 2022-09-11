@@ -1,5 +1,7 @@
 import React from "react";
 import Admission from "../admission/Admission";
+import Banner from "../banner/Banner";
+import BannerBackground from "../banner/BannerBackground";
 import Carusel from "../carusel/Carusel";
 import MessageChairman from "../message/MessageChairman";
 import MessageVC from "../message/MessageVC";
@@ -15,6 +17,8 @@ const Home = () => {
       <WelcomeMessage />
       <MessageVC />
       <MessageChairman />
+      <Banner />
+      <BannerBackground />
     </div>
   );
 };
