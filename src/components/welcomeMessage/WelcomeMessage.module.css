@@ -1,0 +1,14 @@
+.aboutGreen{
+    background-color: rgb(228, 224, 224);
+    padding: 30px;
+}
+
+.welcome{
+    margin-top: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    border-bottom: 2px solid rgb(182, 180, 180);
+    padding-bottom: 20px;
+}
