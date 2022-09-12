@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../Image/Logo.png";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="./home.html">
+      <Link to="/" className="navbar-brand">
         <img className={styles.icon} src={logo} alt="logo" />
-      </a>
+      </Link>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -23,67 +25,69 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active ml-5 font-weight-bold">
-            <a className="nav-link" href="./home.html">
+            <Link to="/home" className="nav-link">
               Home <span className="sr-only">(current)</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item dropdown">
-            <a
+            <Link
+              to="/teacher"
               className="nav-link dropdown-toggle font-weight-bold"
-              href="/teacher"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Teachers
-            </a>
+              Teachers<span className="sr-only">(current)</span>
+            </Link>
+
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="./cse.html">
+              <Link to="/csc" className="dropdown-item">
                 CSE
-              </a>
-              <a className="dropdown-item" href="./eee.html">
+              </Link>
+              <Link to="/eee" className="dropdown-item">
                 EEE
-              </a>
-              <a className="dropdown-item" href="./bba.html">
+              </Link>
+              <Link to="/bba" className="dropdown-item">
                 BBA
-              </a>
-              <a className="dropdown-item" href="./addTeacher.html">
+              </Link>
+              <Link to="/addTeacher" className="dropdown-item">
                 Add Teacher
-              </a>
+              </Link>
             </div>
           </li>
           <li className="nav-item dropdown">
-            <a
+            <Link
+              to="/material"
               className="nav-link dropdown-toggle font-weight-bold"
-              href="/material"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Materials
-            </a>
+              Materials<span className="sr-only">(current)</span>
+            </Link>
+
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="./apply.html">
+              <Link to="./applyOnline" className="dropdown-item">
                 Apply Online
-              </a>
-              <a className="dropdown-item" href="./apllicationList.html">
+              </Link>
+              <Link to="/researchList" className="dropdown-item">
                 Research List
-              </a>
+              </Link>
             </div>
           </li>
           <li className="nav-item active ml-3 font-weight-bold">
-            <a className="nav-link" href="./about.html">
+            <Link to="/aboutUs" className="nav-link">
               About Us
-            </a>
+            </Link>
           </li>
           <li className="nav-item active ml-3 font-weight-bold">
-            <a className="nav-link" href="./contact.html">
+            <Link to="/contactUs" className="nav-link">
               Contact Us
-            </a>
+            </Link>
           </li>
           <li className="nav-item active ml-3 font-weight-bold">
             <a
