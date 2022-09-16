@@ -1,71 +1,77 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import {
-  useAuthState,
+  useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
   useSignInWithFacebook,
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import auth from "../firebase.init";
-import "./Login..css";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import "./Register.css";
 
-const Login = () => {
+const Register = () => {
+  const [agree, setAgree] = useState(false);
   const navigate = useNavigate();
+  const inputName = useRef("");
   const inputEmail = useRef("");
   const inputPass = useRef("");
-  const [user, loading, error] = useAuthState(auth);
+
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [SignInWithGoogle, goolelUser, googleError] = useSignInWithGoogle(auth);
   const [signInWithGithub, githubUser, GithubError] = useSignInWithGithub(auth);
   const [signInWithFacebook, FacebookUser, FacebookError] =
     useSignInWithFacebook(auth);
-  const location = useLocation();
-
+  const [sendEmailVerification, sending, varificationError] =
+    useSendEmailVerification(auth);
   let errorElement;
 
-  let from = location.state?.from?.pathname || "/";
-
   const navigateRegister = () => {
-    navigate("/register");
+    navigate("/login");
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const name = inputName.current.value;
     const email = inputEmail.current.value;
     const password = inputPass.current.value;
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        if (user.emailVerified === false) {
-          alert("you need to verify email");
-        }
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-
-    // inputEmail.current.value = "";
+    await createUserWithEmailAndPassword(email, password);
   };
+  if (
+    error ||
+    GithubError ||
+    FacebookError ||
+    googleError ||
+    varificationError
+  ) {
+    errorElement = <p className="text-danger">Error: {error?.message}</p>;
+  } else {
+    errorElement = "";
+  }
+  if (sending) {
+    return <p>Sending...</p>;
+  }
+
+  if (user) {
+    navigate("/login");
+  }
   if (goolelUser || githubUser || FacebookUser) {
     navigate("/");
   }
   if (loading) {
     return <p>Loading...</p>;
   }
-  if (user) {
-    navigate(from, { replace: true });
-  }
-
-  if (GithubError || FacebookError || googleError) {
-    errorElement = <p className="text-danger">Error: {error?.message}</p>;
-  }
 
   return (
-    <Container className="mb-3 mx-auto my-5 p-3 login-container">
+    <Container className="mx-auto my-5 p-4 login-container">
+      <h1 className="text-success text-center mb-3">Registration New User</h1>
       <Form onSubmit={handleSubmit}>
-        <h1 className="text-success text-center mb-2">Login information</h1>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Control ref={inputName} type="text" placeholder="Enter name" />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             ref={inputEmail}
@@ -83,23 +89,34 @@ const Login = () => {
             required
           />
         </Form.Group>
+        {errorElement}
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+          <Form.Check
+            className={agree ? "text-success" : "text-danger"}
+            onClick={() => setAgree(!agree)}
+            type="checkbox"
+            label="Accept terms and condition"
+          />
         </Form.Group>
 
-        <Button className="px-4 mb-2" variant="primary" type="submit">
-          Login
+        <Button
+          disabled={!agree}
+          className="px-4 mb-2"
+          variant="primary"
+          type="submit"
+        >
+          Register
         </Button>
 
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <div className="d-flex">
-            <Form.Text>New to Green University?</Form.Text>
+            <Form.Text>Already registered user?</Form.Text>
             <Link
               onClick={navigateRegister}
               className="text-decoration-none ps-2"
-              to="/register"
+              to="/login"
             >
-              Please register here
+              Go to the login page
             </Link>
           </div>
         </Form.Group>
@@ -118,10 +135,7 @@ const Login = () => {
           onClick={() => SignInWithGoogle()}
           className="w-50 my-2 btn-success"
         >
-          <span className="text-warning">
-            <BsGoogle />
-          </span>{" "}
-          Google LogIn
+          <BsGoogle /> Google LogIn
         </button>
         <button onClick={() => signInWithGithub()} className="w-50 btn-danger">
           <BsGithub /> Github LogIn
@@ -137,4 +151,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
