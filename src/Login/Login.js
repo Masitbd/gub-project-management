@@ -3,11 +3,10 @@ import React, { useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import {
   useAuthState,
-  useSignInWithFacebook,
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
+import { BsGithub, BsGoogle } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
 import "./Login..css";
@@ -19,8 +18,7 @@ const Login = () => {
   const [user, loading, error] = useAuthState(auth);
   const [SignInWithGoogle, goolelUser, googleError] = useSignInWithGoogle(auth);
   const [signInWithGithub, githubUser, GithubError] = useSignInWithGithub(auth);
-  const [signInWithFacebook, FacebookUser, FacebookError] =
-    useSignInWithFacebook(auth);
+
   const location = useLocation();
 
   let errorElement;
@@ -37,18 +35,12 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        if (user.emailVerified === false) {
-          alert("you need to verify email");
-        }
       })
       .catch((error) => {
         alert(error.message);
       });
-
-    // inputEmail.current.value = "";
   };
-  if (goolelUser || githubUser || FacebookUser) {
+  if (goolelUser || githubUser) {
     navigate("/");
   }
   if (loading) {
@@ -58,7 +50,7 @@ const Login = () => {
     navigate(from, { replace: true });
   }
 
-  if (GithubError || FacebookError || googleError) {
+  if (GithubError || googleError) {
     errorElement = <p className="text-danger">Error: {error?.message}</p>;
   }
 
@@ -120,17 +112,11 @@ const Login = () => {
         >
           <span className="text-warning">
             <BsGoogle />
-          </span>{" "}
+          </span>
           Google LogIn
         </button>
         <button onClick={() => signInWithGithub()} className="w-50 btn-danger">
           <BsGithub /> Github LogIn
-        </button>
-        <button
-          onClick={() => signInWithFacebook()}
-          className="w-50 my-2 btn-primary"
-        >
-          <BsFacebook /> Facebook LogIn
         </button>
       </div>
     </Container>
