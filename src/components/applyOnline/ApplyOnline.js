@@ -1,11 +1,29 @@
 import axios from 'axios'
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
 import './ApplyOnline.css'
 
 
 const ApplyOnline = () => {
   const { register, handleSubmit,reset, formState: { errors } } = useForm();
+  const [teachers, setTeachers] = useState([])
+  
+
+  useEffect(()=>{
+    fetch('http://localhost:5000/teacher')
+    .then(res =>res.json())
+    .then(data =>setTeachers(data))
+    
+  },[])
+
+  const findTeachers=()=>{
+    const unique = teachers.filter((obj, index) => {
+      return index === teachers.findIndex(o => obj.name === o.name);
+    })
+   return unique
+  }
+const uniqueTeachersName = findTeachers()
+  
 
   const onSubmit = data =>{
     console.log(data);
@@ -32,14 +50,14 @@ const ApplyOnline = () => {
     {errors.email && <span>Please enter right email address</span>}
     <label>Select Teacher:</label>
     <select {...register("gender")}>
-        <option value="name">Department of EEE</option>
-        <option value="name">Department of CSE</option>
-        <option value="name">Green Business School</option>
-        <option value="name">Department of Law</option>
-        <option value="name">Department of English</option>
-        <option value="name">Department of Sociology</option>
-        <option value="name">Department of Textile Engineering</option>
-      </select>
+      {
+        
+        uniqueTeachersName.map(teacher =>{
+         return <option value="name">{teacher.name}</option>
+        })
+      }
+       
+    </select>
      
     <label>Research interest Topic Details:</label>
     <textarea {...register("research", { required: true })} />
