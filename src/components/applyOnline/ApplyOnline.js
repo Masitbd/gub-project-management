@@ -5,14 +5,23 @@ import './ApplyOnline.css'
 
 
 const ApplyOnline = () => {
-  const { register, handleSubmit,reset, formState: { errors } } = useForm();
+  const { register, handleSubmit,reset, getValues, formState: { errors } } = useForm();
   const [teachers, setTeachers] = useState([])
+  const [maxProject, srtMaxProject] = useState([])
   
 
   useEffect(()=>{
     fetch('http://localhost:5000/teacher')
     .then(res =>res.json())
     .then(data =>setTeachers(data))
+    
+  },[])
+
+
+  useEffect(()=>{
+    fetch('http://localhost:5000/applyOnline')
+    .then(res =>res.json())
+    .then(data =>srtMaxProject(data))
     
   },[])
 
@@ -23,6 +32,14 @@ const ApplyOnline = () => {
    return unique
   }
 const uniqueTeachersName = findTeachers()
+
+const findMaxProject = (e)=>{
+const count = maxProject.reduce((counter, obj)=>obj.gender===e.target.options[e.target.selectedIndex].text? counter += 1 : counter, 0)
+console.log('Max project', count)
+if(count >5){
+  alert('Already alocated 5 project please select another teacher')
+}
+}
   
 
   const onSubmit = data =>{
@@ -49,13 +66,18 @@ const uniqueTeachersName = findTeachers()
     <input {...register("email", { required: true , pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i})} />
     {errors.email && <span>Please enter right email address</span>}
     <label>Select Teacher:</label>
-    <select {...register("gender")}>
+    {/* <select {...register("gender")} onClick={(e)=>console.log(e.target.options[e.target.selectedIndex].text)}> */}
+    <select  {...register("gender", { required: true })} onClick={findMaxProject}>
+    
+    
+    <option  value="" >{} </option> 
       {
-        
+       
         uniqueTeachersName.map(teacher =>{
-         return <option value="name">{teacher.name}</option>
+         return <option  value={teacher.name}>{teacher.name} </option>
         })
       }
+     
        
     </select>
      

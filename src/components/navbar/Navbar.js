@@ -40,7 +40,7 @@ const Navbar = () => {
           <li className="nav-item dropdown">
             <Link
               to="/teacher"
-              className="nav-link dropdown-toggle font-weight-bold"
+              className="nav-link dropdown-toggle font-weight-bold text-dark"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
@@ -68,7 +68,7 @@ const Navbar = () => {
           <li className="nav-item dropdown">
             <Link
               to="/material"
-              className="nav-link dropdown-toggle font-weight-bold"
+              className="nav-link dropdown-toggle font-weight-bold text-dark"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"

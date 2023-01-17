@@ -111,12 +111,13 @@ const Login = () => {
           className="w-50 my-2 btn-success"
         >
           <span className="text-warning">
-            <BsGoogle />
+            <BsGoogle />   
           </span>
+          <span> </span>
           Google LogIn
         </button>
         <button onClick={() => signInWithGithub()} className="w-50 btn-danger">
-          <BsGithub /> Github LogIn
+          <BsGithub /> <span>' '</span> Github LogIn
         </button>
       </div>
     </Container>

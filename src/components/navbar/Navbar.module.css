@@ -4,3 +4,7 @@
     border-right: 2px solid gray;
     padding-right: 15px;  
 }
+
+.link{
+    color: red !important;
+}
