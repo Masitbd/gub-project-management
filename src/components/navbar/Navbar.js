@@ -1,3 +1,4 @@
+import { Box } from "@mui/system";
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -103,14 +104,19 @@ const Navbar = () => {
               className="nav-link"
               href="/project"
             >
-              GUB project and thesise management system.
+              GUB project management system.
             </a>
           </li>
         </ul>
+         {
+          user && 
+          <Link style={{margin:'15px', color: 'blue' }} to="/dashboard" className="nav-link">
+          Dashboard 
+        </Link>
+         }
 
         <button
-          className="btn btn-danger my-2 my-sm-0"
-          style={{ marginLeft: "5px" }}
+          style={{ margin:'0px', padding:'5px', fontSize:'12px', backgroundColor:'red', color:'white'}}
           onclick="logout()"
         >
           {!user ? (
@@ -118,11 +124,15 @@ const Navbar = () => {
               Log In
             </Link>
           ) : (
+           
+             
             <Link to="#" onClick={logout} className="nav-link">
               Log out
             </Link>
+            
           )}
         </button>
+        
       </div>
     </nav>
   );

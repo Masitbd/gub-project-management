@@ -6,6 +6,7 @@ import ApplyOnline from "./components/applyOnline/ApplyOnline";
 import Bba from "./components/courses/Bba";
 import Csc from "./components/courses/Csc";
 import Eee from "./components/courses/Eee";
+import Dashboard from "./components/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
 import Home from "./components/home/Home";
 import Navbar from "./components/navbar/Navbar";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />

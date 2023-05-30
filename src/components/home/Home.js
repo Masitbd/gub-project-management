@@ -17,6 +17,7 @@ const Home = () => {
       <MessageChairman />
       <Banner />
       <BannerBackground />
+     
     </div>
   );
 };

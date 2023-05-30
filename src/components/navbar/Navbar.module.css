@@ -2,9 +2,14 @@
     width: 100%;
     height: 60px;
     border-right: 2px solid gray;
-    padding-right: 15px;  
+    padding-right: 5px;  
 }
 
 .link{
     color: red !important;
 }
+
+@media (min-width: 600px){
+.css-6iz4mj-MuiButtonBase-root-MuiIconButton-root {
+    display: none !important;
+}}

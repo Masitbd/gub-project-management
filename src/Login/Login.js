@@ -79,8 +79,8 @@ const Login = () => {
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
 
-        <Button className="px-4 mb-2" variant="primary" type="submit">
-          Login
+        <Button className="px-4 mb-2" style={{padding:'8px', fontSize: '12px', letterSpacing: '.5px'}} variant="primary" type="submit">
+          Log in
         </Button>
 
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -109,6 +109,7 @@ const Login = () => {
         <button
           onClick={() => SignInWithGoogle()}
           className="w-50 my-2 btn-success"
+          style={{padding:'8px', fontSize: '12px', letterSpacing: '.5px'}}
         >
           <span className="text-warning">
             <BsGoogle />   
@@ -116,7 +117,10 @@ const Login = () => {
           <span> </span>
           Google LogIn
         </button>
-        <button onClick={() => signInWithGithub()} className="w-50 btn-danger">
+        <button onClick={() => signInWithGithub()} className="w-50 btn-danger" 
+        style={{padding:'8px', fontSize: '12px', letterSpacing: '.5px', marginTop: '0px'}}
+        >
+          
           <BsGithub /> <span>' '</span> Github LogIn
         </button>
       </div>
