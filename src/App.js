@@ -27,7 +27,6 @@ function App() {
           <Route path="/csc" element={<Csc />} />
           <Route path="/eee" element={<Eee />} />
           <Route path="/bba" element={<Bba />} />
-          <Route path="/addTeacher" element={<AddTeacher />} />
           <Route path="/applyOnline" element={<ApplyOnline />} />
           <Route path="/researchList" element={<ReserchList />} />
           <Route path="/aboutUs" element={<AboutUs />} />

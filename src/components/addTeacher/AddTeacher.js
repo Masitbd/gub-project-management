@@ -22,26 +22,26 @@ const AddTeacher = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
     
-    <label>Teacher's Name:</label>
-    <input {...register("name", { required: true })} />
+    
+    <input {...register("name", { required: true })} placeholder="Teacher's Name" />
     {errors.name && <span>Teacher's name is required</span>}
-    <label>Department Name:</label>
-    <select {...register("gender")}>
-        <option value="name">Department of EEE</option>
-        <option value="name">Department of CSE</option>
-        <option value="name">Green Business School</option>
-        <option value="name">Department of Law</option>
-        <option value="name">Department of English</option>
-        <option value="name">Department of Sociology</option>
-        <option value="name">Department of Textile Engineering</option>
+  
+    <select {...register("department")}>
+        <option value="Department of EEE">Department of EEE</option>
+        <option value="Department of CSE">Department of CSE</option>
+        <option value="Green Business School">Green Business School</option>
+        <option value="Department of Law">Department of Law</option>
+        <option value="Department of English">Department of English</option>
+        <option value="Department of Sociology">Department of Sociology</option>
+        <option value="Department of Textile Engineering">Department of Textile Engineering</option>
       </select>
-      <label>Email:</label>
-    <input {...register("email", { required: true , pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i})} />
+    <input {...register("email", { required: true , pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i})}
+    placeholder="Email address" 
+    />
     {errors.email && <span>Please enter right email address</span>}
-    <label>Research interest:</label>
-    <textarea {...register("research", { required: true })} />
+     <textarea {...register("research", { required: true })} placeholder="Research interest" />
     {errors.name && <span>Please write your interest</span>}
-    <input type="submit" />
+    <input style={{marginTop: '10px', marginBottom: '40px'}} type="submit" />
   </form>
   )
 };
