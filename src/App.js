@@ -34,7 +34,11 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} >
+          <Route index element={'/'} />
+          <Route path="addTeacher" element={<AddTeacher />} />
+          <Route path="researchList" element={<ReserchList />} />
+          </Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />

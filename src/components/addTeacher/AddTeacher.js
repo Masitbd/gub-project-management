@@ -9,7 +9,7 @@ const AddTeacher = () => {
   const { register, handleSubmit,reset, formState: { errors } } = useForm();
 
   const onSubmit = data =>{
-    console.log(data);
+    console.log('see data',data);
     axios.post("http://localhost:5000/teacher", data)
     .then(res =>{
       if(res.data.insertedId){

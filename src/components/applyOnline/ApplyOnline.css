@@ -27,7 +27,7 @@ body {
   
   p::before {
     display: inline;
-    content: "⚠ ";
+    content: "";
   }
   
   input, select {

@@ -21,7 +21,7 @@
     "react-firebase-hooks": "^5.0.3",
     "react-hook-form": "^7.41.5",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4"
