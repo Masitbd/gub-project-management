@@ -1,7 +1,7 @@
 import React from "react";
 
 const NotFound = () => {
-  return <div>this is not found form</div>;
+  return <div>Not found url</div>;
 };
 
 export default NotFound;

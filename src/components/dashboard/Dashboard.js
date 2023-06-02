@@ -16,7 +16,13 @@ import { Link, Outlet } from "react-router-dom";
 
 
 import "./Dashbord.css";
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
+
+const logout = () => {
+  signOut(auth);
+};
 
 const drawerWidth = 200;
 
@@ -44,6 +50,18 @@ function Dashboard(props) {
       <ListItemButton>
       <Link to="/dashboard/addStudent" style={{textDecoration:'none', marginLeft:'20px'}}>
               Add Student
+            </Link> 
+      </ListItemButton>
+      
+      </ListItem> 
+
+
+{/* logout */}
+      <ListItem disablePadding>
+      <ListItemButton>
+      <Link to="/" style={{textDecoration:'none', marginLeft:'20px'}}>
+              Logout
+              {logout()}
             </Link> 
       </ListItemButton>
       

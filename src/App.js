@@ -4,7 +4,7 @@ import AboutUs from "./aboutUs/AboutUs";
 import AddTeacher from "./components/addTeacher/AddTeacher";
 import ApplyOnline from "./components/applyOnline/ApplyOnline";
 import Bba from "./components/courses/Bba";
-import Csc from "./components/courses/Csc";
+import Cse from "./components/courses/Cse";
 import Eee from "./components/courses/Eee";
 import Dashboard from "./components/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/csc" element={<Csc />} />
+          <Route path="/cse" element={<Cse />} />
           <Route path="/eee" element={<Eee />} />
           <Route path="/bba" element={<Bba />} />
           <Route path="/applyOnline" element={<ApplyOnline />} />
