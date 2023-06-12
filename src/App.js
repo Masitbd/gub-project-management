@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AboutUs from "./aboutUs/AboutUs";
+import AboutUs from "./components/aboutUs/AboutUs";
 import AddTeacher from "./components/addTeacher/AddTeacher";
 import ApplyOnline from "./components/applyOnline/ApplyOnline";
 import Bba from "./components/courses/Bba";

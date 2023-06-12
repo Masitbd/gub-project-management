@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import './ApplyOnline.css'
 
 
 const ApplyOnline = () => {
-  const { register, handleSubmit,reset, getValues, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
+
   const [teachers, setTeachers] = useState([])
   const [maxProject, srtMaxProject] = useState([])
   
@@ -42,8 +43,19 @@ if(count >5){
 }
   
 
-  const onSubmit = data =>{
+  const onSubmit = (data )=>{
+
+    //const formData = new FormData();
+   
     console.log(data);
+/* 
+    formData.append('studentName', data.studentName);
+    formData.append('studentId', data.studentId);
+    formData.append('email', data.email);
+    formData.append('gender', data.gender);
+    formData.append('pdf', data.pdf[0]); 
+    console.log(formData) */
+    
     axios.post("http://localhost:5000/applyOnline", data)
     .then(res =>{
       if(res.data.insertedId){
@@ -57,10 +69,10 @@ if(count >5){
     <form onSubmit={handleSubmit(onSubmit)}>
     
     <label>Student Name:</label>
-    <input {...register("studentName", { required: true })} />
+    <input type="text" {...register("studentName", { required: true })} />
     {errors.studentName && <span>Teacher's name is required</span>}
     <label>Student ID:</label>
-    <input {...register("studentId", { required: true })} />
+    <input type="text"  {...register("studentId", { required: true })} />
     {errors.studentId && <span>Teacher's name is required</span>}
     <label>Email:</label>
     <input {...register("email", { required: true , pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i})} />
@@ -80,9 +92,22 @@ if(count >5){
      
        
     </select>
+    
+          
+          <label>Select PDF File:</label>
+          <input
+  type="file"
+  onChange={(e) => {
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+     //console.log('fileName', file.name)
+      setValue('pdf', file);
+    }
+  }}
+/>        
      
     <label>Research interest Topic Details:</label>
-    <textarea {...register("research", { required: true })} />
+    <textarea type="text" {...register("research", { required: true })} />
     {errors.research && <span>Please write your interest</span>}
     <input type="submit" />
   </form>
