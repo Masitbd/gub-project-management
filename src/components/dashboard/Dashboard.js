@@ -54,6 +54,14 @@ function Dashboard(props) {
       </ListItemButton>
       
       </ListItem> 
+      <ListItem disablePadding>
+      <ListItemButton>
+      <Link to="/dashboard/researchList" style={{textDecoration:'none', marginLeft:'20px'}}>
+              Update Materials
+            </Link> 
+      </ListItemButton>
+      
+      </ListItem> 
 
 
 {/* logout */}

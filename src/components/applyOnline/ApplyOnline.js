@@ -45,23 +45,33 @@ if(count >5){
 
   const onSubmit = (data )=>{
 
-    //const formData = new FormData();
+  //const formData = new FormData();
    
-    console.log(data);
-/* 
-    formData.append('studentName', data.studentName);
+    // console.log(data);
+
+    /* formData.append('studentName', data.studentName);
     formData.append('studentId', data.studentId);
     formData.append('email', data.email);
     formData.append('gender', data.gender);
     formData.append('pdf', data.pdf[0]); 
-    console.log(formData) */
+    console.log(formData)  */
+
+    const formData = new FormData();
+
+    formData.append('studentName', data.studentName);
+    formData.append('studentId', data.studentId);
+    formData.append('email', data.email);
+    formData.append('gender', data.gender);
+    formData.append('research', data.research);
+    formData.append('pdf', data.pdf);
+    console.log('pdf filename',data.gender)
     
-    axios.post("http://localhost:5000/applyOnline", data)
+    axios.post("http://localhost:5000/applyOnline", formData)
     .then(res =>{
       if(res.data.insertedId){
         alert('One record added successfully')
       }
-      reset()
+     // reset()
     })
   } 
  
@@ -81,15 +91,14 @@ if(count >5){
     {/* <select {...register("gender")} onClick={(e)=>console.log(e.target.options[e.target.selectedIndex].text)}> */}
     <select  {...register("gender", { required: true })} onClick={findMaxProject}>
     
+    {uniqueTeachersName.map((teacher) =><option value={teacher.name}>{teacher.name}</option>
+   
+      
     
-    <option  value="" >{} </option> 
-      {
-       
-        uniqueTeachersName.map(teacher =>{
-         return <option  value={teacher.name}>{teacher.name} </option>
-        })
-      }
-     
+  )}
+
+
+
        
     </select>
     
