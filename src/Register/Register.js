@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import {
@@ -29,6 +30,8 @@ const Register = () => {
     useSendEmailVerification(auth);
   let errorElement;
 
+  
+
   const navigateRegister = () => {
     navigate("/login");
   };
@@ -39,6 +42,7 @@ const Register = () => {
     const email = inputEmail.current.value;
     const password = inputPass.current.value;
     await createUserWithEmailAndPassword(email, password);
+    saveUser(email, name)
   };
   if (
     error ||
@@ -64,6 +68,19 @@ const Register = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
+
+const saveUser =(email, displayName)=>{
+  const user = {email, displayName}
+  axios.post("http://localhost:5000/users", user)
+    .then(res =>{
+      if(res.data.insertedId){
+        alert('One record added successfully')
+      }
+     // reset()
+    })
+  } 
+
+
 
   return (
     <Container className="mx-auto my-5 p-4 login-container">
