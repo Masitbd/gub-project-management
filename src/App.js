@@ -9,6 +9,7 @@ import Eee from "./components/courses/Eee";
 import Dashboard from "./components/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
 import Home from "./components/home/Home";
+import MakeAdmin from "./components/makeAdmin/MakeAdmin";
 import Navbar from "./components/navbar/Navbar";
 import ContactUs from "./contactUs/ContactUs";
 import Login from "./Login/Login";
@@ -34,9 +35,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} >
-          <Route index element={'/'} />
-          <Route path="addTeacher" element={<AddTeacher />} />
-          <Route path="researchList" element={<ReserchList />} />
+            <Route index element={'/'} />
+            <Route path="addTeacher" element={<AddTeacher />} />
+            <Route path="researchList" element={<ReserchList />} />
+            <Route path="makeadmin" element={<MakeAdmin />} />
           </Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>

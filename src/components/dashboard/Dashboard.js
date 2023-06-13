@@ -62,6 +62,16 @@ function Dashboard(props) {
       </ListItemButton>
       
       </ListItem> 
+      <ListItem disablePadding>
+      <ListItemButton>
+      <Link to="/dashboard/makeadmin" style={{textDecoration:'none', marginLeft:'20px'}}>
+              Make Admin
+            </Link> 
+      </ListItemButton>
+      
+      </ListItem> 
+
+      
 
 
 {/* logout */}

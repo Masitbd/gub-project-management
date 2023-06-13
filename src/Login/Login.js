@@ -1,3 +1,4 @@
+import axios from "axios";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
@@ -28,6 +29,19 @@ const Login = () => {
   const navigateRegister = () => {
     navigate("/register");
   };
+
+  const saveUser =(email, displayName)=>{
+    const user = {email, displayName}
+    
+    axios.put("http://localhost:5000/users", user)
+      .then(res =>{
+        if(res.data.insertedId){
+          alert('One record added successfully')
+        }
+       // reset()
+      })
+    } 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = inputEmail.current.value;
@@ -41,6 +55,7 @@ const Login = () => {
       });
   };
   if (goolelUser || githubUser) {
+    saveUser(user.email, user.displayName )
     navigate("/");
   }
   if (loading) {
@@ -53,6 +68,9 @@ const Login = () => {
   if (GithubError || googleError) {
     errorElement = <p className="text-danger">Error: {error?.message}</p>;
   }
+
+
+  
 
   return (
     <Container className="mb-3 mx-auto my-5 p-3 login-container">
