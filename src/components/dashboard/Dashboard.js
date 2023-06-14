@@ -15,9 +15,12 @@ import Typography from '@mui/material/Typography';
 import { Link, Outlet } from "react-router-dom";
 
 
+
+
 import "./Dashbord.css";
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 const logout = () => {
@@ -29,16 +32,33 @@ const drawerWidth = 200;
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [user] = useAuthState(auth);
+  const [admin,setAdmin] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  
+  React.useEffect(() => {
+    if (user && user.email) { 
+      fetch(`http://localhost:5000/users/${user.email}`)
+        .then(res => res.json())
+        .then(data => setAdmin(data.admin))
+        .catch(error => {
+         
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, [user?.email]);
+
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
-      <List>
+     {
+      admin && <Box>
+         <List>
       <ListItem disablePadding>
       <ListItemButton>
              <Link to="/dashboard/addTeacher" style={{textDecoration:'none', marginLeft:'20px'}}>
@@ -46,14 +66,7 @@ function Dashboard(props) {
              </Link>
       </ListItemButton>
       </ListItem> 
-      <ListItem disablePadding>
-      <ListItemButton>
-      <Link to="/dashboard/addStudent" style={{textDecoration:'none', marginLeft:'20px'}}>
-              Add Student
-            </Link> 
-      </ListItemButton>
-      
-      </ListItem> 
+     
       <ListItem disablePadding>
       <ListItemButton>
       <Link to="/dashboard/researchList" style={{textDecoration:'none', marginLeft:'20px'}}>
@@ -71,10 +84,12 @@ function Dashboard(props) {
       
       </ListItem> 
 
-      
+  </List>
 
-
-{/* logout */}
+      </Box>
+     
+     }
+     {/* logout */}
       <ListItem disablePadding>
       <ListItemButton>
       <Link to="/" style={{textDecoration:'none', marginLeft:'20px'}}>
@@ -85,10 +100,6 @@ function Dashboard(props) {
       
       </ListItem> 
       
-     
-         
-      </List>
-    
      
     </div>
   );

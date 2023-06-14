@@ -5,23 +5,23 @@ import { useForm } from "react-hook-form";
 const MakeAdmin = () => {
 const {
         register,
-        handleSubmit,
+        handleSubmit,reset,
         formState: { errors }
       } = useForm();
       const onSubmit = (data) => {
-        console.log(data);
+        //console.log(data);
         axios.put("http://localhost:5000/users/admin", data)
     .then(res =>{
-      if(res.data.insertedId){
-        alert('One record added successfully')
+      if(res.data.modifiedCount){
+        alert('Make admin successfully')
       }
-     // reset()
+      reset()
     })
   }
     
  return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("user", { required: true })} />
+            <input defaultValue={''} {...register("user", { required: true })} />
              {errors.makeAdmin && <p>This field is required</p>}
 
       <input type="submit" />
