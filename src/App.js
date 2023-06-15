@@ -11,6 +11,8 @@ import Footer from "./components/footer/Footer";
 import Home from "./components/home/Home";
 import MakeAdmin from "./components/makeAdmin/MakeAdmin";
 import Navbar from "./components/navbar/Navbar";
+import StudentPortal from "./components/studentPortal/StudentPortal";
+import TeacherPortal from "./components/teacherPortal/TeacherPortal";
 import ContactUs from "./contactUs/ContactUs";
 import Login from "./Login/Login";
 import NotFound from "./notFund/NotFound";
@@ -34,6 +36,9 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/teacherPortal" element={<TeacherPortal />} />
+          <Route path="/studentPortal" element={<StudentPortal />} />
+
           <Route path="/dashboard" element={<Dashboard />} >
             <Route index element={'/'} />
             <Route path="addTeacher" element={<AddTeacher />} />

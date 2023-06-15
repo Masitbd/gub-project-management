@@ -7,7 +7,9 @@ const {
         register,
         handleSubmit,reset,
         formState: { errors }
-      } = useForm();
+      } = useForm({defaultValues: {
+        user: "",
+      },});
       const onSubmit = (data) => {
         //console.log(data);
         axios.put("http://localhost:5000/users/admin", data)
@@ -21,7 +23,7 @@ const {
     
  return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input defaultValue={''} {...register("user", { required: true })} />
+            <input {...register("user", { required: true })} />
              {errors.makeAdmin && <p>This field is required</p>}
 
       <input type="submit" />

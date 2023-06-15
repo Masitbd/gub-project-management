@@ -12,15 +12,17 @@ const ReserchList = () => {
       
     })
   }, [])
-  return <div>
+  return <div style={{marginBottom: '10px', padding:'10px'}}>
     {
     applyonline.map(apply=>{
       return (
         
-          <div style={{'backgroundColor':'rosybrown'}}>
-            <p>{apply.studentName}</p>
-            <p>{apply.filename}</p>
-            <p>{apply.email}</p>
+          <div style={{backgroundColor:'rosybrown', paddingLeft: '15px', color:'white'}}>
+            <p style={{paddingTop: '10px'}}>Student Name: {apply.studentName}</p>
+            <p>Student Id: {apply.studentId}</p>
+            <p>Teacher Name: {apply.gender}</p>
+            <p>Student Email: {apply.email}</p>
+            <p style={{paddingBottom: '10px'}}>Research Topic: {apply.research}</p>
           </div>
       )
     })

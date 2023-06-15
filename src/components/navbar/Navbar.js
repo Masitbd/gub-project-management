@@ -102,9 +102,20 @@ const Navbar = () => {
             <a
               style={{ color: "green", fontSize: "larger" }}
               className="nav-link"
-              href="/project"
+              href="/teacherPortal"
             >
-              GUB project management system.
+              Teacher Portal
+            {/*   GUB project management system. */}
+            </a>
+          </li>
+          <li className="nav-item active ml-3 font-weight-bold">
+            <a
+              style={{ color: "green", fontSize: "larger" }}
+              className="nav-link"
+              href="/studentPortal"
+            >
+              Student Portal
+            
             </a>
           </li>
         </ul>
@@ -117,7 +128,7 @@ const Navbar = () => {
 
         <button
           style={{ margin:'0px', padding:'5px', fontSize:'12px', backgroundColor:'red', color:'white'}}
-          onclick="logout()"
+          onClick={()=>logout()}
         >
           {!user ? (
             <Link to="/login" className="nav-link">

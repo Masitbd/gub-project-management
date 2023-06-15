@@ -126,7 +126,7 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" style={{'paddingBottom': '50px', 'paddingTop': '50px'}}>
            Admin Dashboard
           </Typography>
         </Toolbar>

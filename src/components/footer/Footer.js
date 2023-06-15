@@ -11,7 +11,7 @@ import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} style={{marginTop: '60px'}}>
       <div className="container my-4">
         <div className="row text-white">
           <div className="col-md-6 mt-5">
