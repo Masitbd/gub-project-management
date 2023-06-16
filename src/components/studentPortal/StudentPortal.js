@@ -60,7 +60,7 @@ const uniqueStudentsName = findStudents()
 
      </select><input type="submit" />
     </form>
-      <p style={{fontSize:  '30px'}}>Student portal</p>
+      <p style={{fontSize:  '30px', }}>Student portal</p>
     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
        
     {teachers.map((teacher, index) => (
